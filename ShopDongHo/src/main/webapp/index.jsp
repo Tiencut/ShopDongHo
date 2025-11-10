@@ -66,7 +66,6 @@
         </div>
       </div>
     </div>
-		<!-- 
     <div class="site-section block-3 site-blocks-2 bg-light">
       <div class="container">
         <div class="row justify-content-center">
@@ -79,7 +78,7 @@
             <div class="nonloop-block-3 owl-carousel">
             	<%
             		ArrayList<SanPhamBean> fp = (ArrayList<SanPhamBean>)ss.getAttribute("featuredProducts");
-	            		out.println("<h3>ok</h3>");
+	            		out.println("fp is null: " + (fp == null));
             		out.println(fp.size());
 	            	for (SanPhamBean sp: fp) {            			
             	%>	
@@ -99,7 +98,7 @@
         </div>
       </div>
     </div>
-    -->
+    
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>

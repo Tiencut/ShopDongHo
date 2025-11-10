@@ -16,7 +16,7 @@ public class GioHangDao {
 		KetNoi kn = new KetNoi();
 		int kq = 0;
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, MaNguoiDung);
 			System.out.println("MaNguoiDung = " + MaNguoiDung);
@@ -36,7 +36,7 @@ public class GioHangDao {
 		String qry = "delete from ChiTietHoaDon where MaHoaDon = ? and MaSanPham = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, maHoaDon);
 			ps.setInt(2, MaSanPham);
@@ -53,7 +53,7 @@ public class GioHangDao {
 		KetNoi kn = new KetNoi();
 		ArrayList<GioHangBean> gh = new ArrayList<GioHangBean>();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, maHoaDon);
 			ResultSet rs = ps.executeQuery();
@@ -75,7 +75,7 @@ public class GioHangDao {
 		String qry = "exec ThemVaoCTHoaDon ?, ?, ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, MaSanPham);
 			ps.setLong(2, soLuong);
@@ -91,7 +91,7 @@ public class GioHangDao {
 		String qry = "update HoaDon set DaMua = 1 where MaHoaDon = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, MaHoaDon);
 			ps.executeUpdate();

@@ -14,7 +14,7 @@ public class NhaSanXuatDao {
 		String qry = "select * from NhaSanXuat";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {

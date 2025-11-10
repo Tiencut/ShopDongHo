@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -70,7 +69,7 @@
                 <div class="site-block-27">
                   <ul>
                   	<%
-                  		Integer numProducts = (ss.getAttribute("numProducts") == null ? 1 : (int)ss.getAttribute("numProducts"));
+                  		Integer numProducts = (ss.getAttribute("numProducts") == null ? 1 : (Integer)ss.getAttribute("numProducts"));
                   		Integer numPage = (numProducts + 8) / 9;
                   		Integer curPage = (request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page")));
                  			Integer L = Math.max(curPage - 2, 1);

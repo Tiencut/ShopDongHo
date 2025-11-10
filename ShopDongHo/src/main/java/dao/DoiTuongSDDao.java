@@ -14,7 +14,7 @@ public class DoiTuongSDDao {
 		String qry = "select * from DoiTuongSD";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {

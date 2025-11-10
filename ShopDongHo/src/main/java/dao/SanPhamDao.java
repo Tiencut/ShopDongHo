@@ -11,7 +11,7 @@ public class SanPhamDao {
 		String qry = "select max(MaSanPham) from SanPham";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -28,7 +28,7 @@ public class SanPhamDao {
 		String qry = "select * from SanPham where MaSanPham = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, msp);
 			ResultSet rs = ps.executeQuery();
@@ -55,7 +55,7 @@ public class SanPhamDao {
 		String qry = "select * from SanPham";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -89,7 +89,7 @@ public class SanPhamDao {
 		String qry = "select * from SanPham where TenSanPham like N'%" + pt + "%'";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 //			ps.setNString(1, pt);
 			ResultSet rs = ps.executeQuery();
@@ -125,7 +125,7 @@ public class SanPhamDao {
 		String qry = "select * from SanPham order by MaSanPham offset ? rows fetch next 9 rows only";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, skip);
 			ResultSet rs = ps.executeQuery();
@@ -262,7 +262,7 @@ public class SanPhamDao {
 		System.out.println(sql);
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(sql);
 			int skip = (page - 1) * 9;
 			ps.setInt(1, skip);
@@ -399,7 +399,7 @@ public class SanPhamDao {
 		System.out.println(sql);
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(sql);
 			int skip = (page - 1) * 9;
 			ps.setInt(1, skip);
@@ -437,7 +437,7 @@ public class SanPhamDao {
 		String qry = "update SanPham set TenSanPham = ?, DonGia = ? where MaSanPham = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setNString(1, TenSanPham);
 			ps.setLong(2, donGia);
@@ -452,7 +452,7 @@ public class SanPhamDao {
 		String qry = "update SanPham set DaXoa = 1 where MaSanPham = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, maSanPham);
 			ps.executeUpdate();
@@ -464,7 +464,7 @@ public class SanPhamDao {
 		String qry = "insert into SanPham(TenSanPham, DonGia, HinhAnh, LoaiDongHo, MaNSX, MaDoiTuongSD, DaXoa) values(?, ?, ?, ?, ?, ?, 0)";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+			
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setNString(1, tenSanPham);
 			ps.setLong(2, donGia);

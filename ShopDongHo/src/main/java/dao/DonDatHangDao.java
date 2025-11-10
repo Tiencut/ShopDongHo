@@ -14,7 +14,7 @@ public class DonDatHangDao {
 		String qry = "insert into DonDatHang(HoVaTen, DiaChi, SDT, TongTien, MaHoaDon, TinhTrang) values(?, ?, ?, ?, ?, 0)";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setString(1, HoVaTen);
 			ps.setString(2, DiaChi);
@@ -33,7 +33,7 @@ public class DonDatHangDao {
 		String qry = "select MaHoaDon from HoaDon where MaNguoiDung = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, MaNguoiDung);
 			ResultSet rs = ps.executeQuery();
@@ -54,7 +54,7 @@ public class DonDatHangDao {
 			for (Integer x: maHoaDon) {
 				System.err.println(x);
 				try {
-					kn.ketnoi();
+
 					String qry = "select * from DonDatHang where MaHoaDon = ?";
 					PreparedStatement ps = kn.cn.prepareStatement(qry);
 					ps.setInt(1, x);
@@ -83,7 +83,7 @@ public class DonDatHangDao {
 		String qry = "select * from DonDatHang where TinhTrang = 0";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -107,7 +107,7 @@ public class DonDatHangDao {
 		String qry = "update DonDatHang set TinhTrang = 1 where MaDonDatHang = ?";
 		KetNoi kn = new KetNoi();
 		try {
-			kn.ketnoi();
+
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
 			ps.setInt(1, MaDonDatHang);
 			ps.executeUpdate();

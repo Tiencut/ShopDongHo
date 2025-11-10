@@ -33,17 +33,21 @@ public class IndexController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("IndexController doGet called!"); // Added for debugging
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 			HttpSession session = request.getSession();
 			NhaSanXuatBo nhaSanXuatBo = new NhaSanXuatBo();
 			session.setAttribute("NhaSanXuat", nhaSanXuatBo.getNhaSanXuat());
 			SanPhamBo spb = new SanPhamBo();
-			ArrayList<SanPhamBean> fp = new ArrayList<SanPhamBean>();
-			if (session.getAttribute("featuredProducts") == null) {
+			ArrayList<SanPhamBean> fp = (ArrayList<SanPhamBean>) session.getAttribute("featuredProducts");
+			if (fp == null) {
 				fp = spb.getSanPham();
+				if (fp == null) {
+					fp = new ArrayList<SanPhamBean>(); // Ensure fp is never null
+				}
+				session.setAttribute("featuredProducts", fp);
 			}
-			session.setAttribute("featuredProducts", fp);
 			System.err.println(fp.size());
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);			

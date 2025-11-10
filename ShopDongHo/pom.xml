@@ -4,6 +4,7 @@
   <artifactId>ShopDongHo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+
   <build>
     <resources>
       <resource>
@@ -25,6 +26,63 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.3</version>
       </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <port>8080</port>
+          <path>/</path>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <repositories>
+    <repository>
+      <id>enonic-public</id>
+      <name>Enonic Public Repository</name>
+      <url>https://repo.enonic.com/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+    <dependency>
+      <groupId>nl.captcha</groupId>
+      <artifactId>simplecaptcha</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.2.224</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
 </project>

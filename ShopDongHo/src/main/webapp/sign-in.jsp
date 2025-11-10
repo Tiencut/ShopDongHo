@@ -41,7 +41,8 @@
 			    <input type="password" id="passWord" name = "passWord" class="form-control" placeholder = "Nhập mật khẩu" required="required"/>
 			  </div>
 			  <%
-			  	if (ss.getAttribute("fail") != null && (int)ss.getAttribute("fail") > 2) {
+			  	Integer failCount = (Integer)ss.getAttribute("fail");
+			  	if (failCount != null && failCount > 2) {
 			  		out.println("<img src = \"simpleCaptcha.jpg\">");
 			  		out.println("<input type = \"text\" name = \"captcha\" class = \"form-control\">");
 			  	}

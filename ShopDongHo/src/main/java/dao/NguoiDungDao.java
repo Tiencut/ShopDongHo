@@ -24,7 +24,7 @@ public class NguoiDungDao {
 		String qry = "select * from NguoiDung where TenDangNhap = ?";
 		PreparedStatement ps;
 		try {
-			kn.ketnoi();
+			
 			ps = kn.cn.prepareStatement(qry);
 			ps.setString(1, usr);
 			ResultSet rs = ps.executeQuery();
@@ -41,7 +41,7 @@ public class NguoiDungDao {
 	public NguoiDungBean DangNhap(String usr, String pass) {
 		try {
 			KetNoi kn = new KetNoi();
-			kn.ketnoi();
+			
 			pass = ecrypt(pass);
 			String qry = "select * from NguoiDung where TenDangNhap = ? and MatKhau = ?";
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
@@ -67,7 +67,7 @@ public class NguoiDungDao {
 	public boolean DangKi(String tenNguoiDung, String tenDangNhap, String matKhau) {
 		try {
 			KetNoi kn = new KetNoi();
-			kn.ketnoi();
+			
 			System.out.println(matKhau);
 			matKhau = ecrypt(matKhau);
 			System.out.println(matKhau);
