@@ -50,7 +50,13 @@ public class DangNhapController extends HttpServlet {
 				if (!captcha.isCorrect(ccha)) ok = false;
 			}
 			NguoiDungBean nguoiDung = ndb.DangNhap(TK, MK);
-			if (ok && ndb.DangNhap(TK, MK) != null) {
+			if (nguoiDung != null && !nguoiDung.isVerified()) {
+				ss.setAttribute("mess", "Tài khoản của bạn chưa được xác thực email. Vui lòng kiểm tra email để xác thực.");
+				RequestDispatcher rd = request.getRequestDispatcher("sign-in.jsp");
+				rd.forward(request, response);
+				return;
+			}
+			if (ok && nguoiDung != null) {
 				ss.setAttribute("nguoiDung", nguoiDung);
 				ss.removeAttribute("mess");
 				ss.removeAttribute("fail");

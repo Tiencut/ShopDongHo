@@ -64,24 +64,54 @@ public class NguoiDungDao {
 		return null;
 	}
 	
-	public boolean DangKi(String tenNguoiDung, String tenDangNhap, String matKhau) {
+	public Boolean DangKi(NguoiDungBean nd) {
 		try {
 			KetNoi kn = new KetNoi();
-			
-			System.out.println(matKhau);
-			matKhau = ecrypt(matKhau);
-			System.out.println(matKhau);
-			String qry = "insert into NguoiDung(TenNguoiDung, TenDangNhap, MatKhau, Quyen) values(?, ?, ?, 0)";
+			String qry = "INSERT INTO NguoiDung (TenNguoiDung, TenDangNhap, MatKhau, Email, Quyen, IsVerified) VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = kn.cn.prepareStatement(qry);
-			ps.setNString(1, tenNguoiDung);
-			ps.setString(2, tenDangNhap);
-			ps.setString(3, matKhau);
-			ps.executeUpdate();
+			ps.setNString(1, nd.getTenNguoiDung());
+			ps.setString(2, nd.getTenDangNhap());
+			ps.setString(3, ecrypt(nd.getMatKhau()));
+			ps.setString(4, nd.getEmail());
+			ps.setBoolean(5, false); // Mặc định là người dùng thường
+			ps.setBoolean(6, false); // Mặc định chưa xác thực
+			int res = ps.executeUpdate();
 			kn.cn.close();
-			return true;
+			return res > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
+	
+    public int updateVerificationStatus(String verificationToken) {
+        try {
+            KetNoi kn = new KetNoi();
+            String qry = "UPDATE NguoiDung SET IsVerified = TRUE, VerificationToken = NULL WHERE VerificationToken = ?";
+            PreparedStatement ps = kn.cn.prepareStatement(qry);
+            ps.setString(1, verificationToken);
+            int rowsAffected = ps.executeUpdate();
+            kn.cn.close();
+            return rowsAffected;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public boolean updateVerificationToken(String tenDangNhap, String verificationToken) {
+        try {
+            KetNoi kn = new KetNoi();
+            String qry = "UPDATE NguoiDung SET VerificationToken = ?, IsVerified = FALSE WHERE TenDangNhap = ?";
+            PreparedStatement ps = kn.cn.prepareStatement(qry);
+            ps.setString(1, verificationToken);
+            ps.setString(2, tenDangNhap);
+            int rowsAffected = ps.executeUpdate();
+            kn.cn.close();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -38,24 +38,25 @@ public class DangKiController extends HttpServlet {
 		String tenNguoiDung = request.getParameter("tenNguoiDung");
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String matKhau = request.getParameter("matKhau");
+		String email = request.getParameter("email");
 		String mess = "";
-		if (tenNguoiDung != null && tenDangNhap != null && matKhau != null) {
+		if (tenNguoiDung != null && tenDangNhap != null && matKhau != null && email != null) {
 			if (ndb.KiemTraTonTai(tenDangNhap) == true) {
 				mess = "Tên đăng nhập đã tồn tại";
-				ss.setAttribute("mess", mess);
-			} else {
-				if (ndb.DangKi(tenNguoiDung, tenDangNhap, matKhau)) {
-					ss.removeAttribute("mess");
-					response.sendRedirect("DangNhapController");
-					return;
+					request.setAttribute("message", mess);
 				} else {
-					mess = "Tên đăng nhập đã tồn tại";
-					ss.setAttribute("mess", mess);
+					if (ndb.DangKi(tenNguoiDung, tenDangNhap, matKhau, email)) {
+						request.setAttribute("message", "Đăng ký thành công! Vui lòng kiểm tra email để xác thực tài khoản.");
+						response.sendRedirect("EmailVerificationController?username=" + tenDangNhap + "&email=" + email);
+						return;
+					} else {
+						mess = "Đăng ký không thành công. Vui lòng thử lại.";
+						request.setAttribute("message", mess);
+					}
 				}
-			}
 		} else {
-			ss.removeAttribute("mess");
-		}
+			request.removeAttribute("message");
+			}
 		System.out.println("quay lai dang nhap");
 		RequestDispatcher rd = request.getRequestDispatcher("sign-up.jsp");
 		rd.forward(request, response);

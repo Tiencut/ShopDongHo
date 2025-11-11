@@ -30,6 +30,25 @@
     <%@include file="head.jsp"%>
     
 		<div class = "container w-25">
+			<%
+				String message = (String) request.getAttribute("message");
+				if (message != null && !message.isEmpty()) {
+			%>
+				<div class="alert alert-info" role="alert">
+					<%= message %>
+				</div>
+			<%
+				}
+				String sessionMess = (String) ss.getAttribute("mess");
+				if (sessionMess != null && !sessionMess.isEmpty()) {
+			%>
+				<div class="alert alert-warning" role="alert">
+					<%= sessionMess %>
+				</div>
+			<%
+					ss.removeAttribute("mess");
+				}
+			%>
 			<form action = "DangKiController" method = "post">
 				<div class="form-outline mb-4">
 			    <label class="form-label" for="Name">Tên người dùng</label>
